@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+void mainpage();
+void edit();
+int main()
+{
+	
+	 // first_page();
+	mainpage();
+	system("pause");
+}
+
+void mainpage()
+{
+	cout << "\t \t Welcome *username*! " << endl;
+	cout << "This is your main page!" << endl;
+	cout << "Please choose your option: " << endl;
+	cout << "(1) Edit your data" << endl << "(2) Search for a student" << endl << "(3) Add student data" << endl;
+	cout << "(4) Edit student data" << endl << "(5) Exit" << endl << "(6) Log out";
+	int choice;
+	cout << "choice: "; 
+	cin >> choice;
+	system("cls");
+	edit();
+}
+
+void edit()
+{
+	cout << "What would you like to change?" << endl;
+	cout << "(1) Full name" << endl << "(2) ID" << endl << "(3) Password" << endl;
+	cout << "(4) Back to Main page" << endl << "(5) exit" << endl << "(6) Log out" << endl;
+	int choice;
+	cout << "choice: ";
+	cin >> choice;
+}
