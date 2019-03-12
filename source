@@ -1,36 +1,144 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <string.h>
+#include <vector>
 using namespace std;
 
+/*struct student {
+	string name;
+	string pass;
+	int id;
+}s[1000];*/
+
+struct courses
+{
+	int id;
+	string name;
+	string IN; //intructor name
+};
+
+struct academicYear
+{
+	vector <courses> yc; //year courses
+}yc2017 , yc2018 , yc2019;
+
+//void start(); login page
 void mainpage();
+void display(); 
 void edit();
+void search();
+void add();
+
 int main()
 {
-	
-	 // first_page();
+	// first_page();
 	mainpage();
 	system("pause");
 }
 
+/*void start()
+{
+	cout << "\t\t FCIS2022 Course manegment system" << endl;
+	cout << "\t\t (1) Login";
+	cout << "\t (2) Register" << endl;
+	int choice;
+	cout << "choice:"; cin >> choice;
+	switch (choice)
+	{
+	case 1:
+		login();
+		break;
+	case 2:
+		regestir();
+		break;
+	default:
+		cout << "invalid input";
+		break;
+	}
+}*/
+//the login page
 void mainpage()
 {
 	cout << "\t \t Welcome *username*! " << endl;
 	cout << "This is your main page!" << endl;
 	cout << "Please choose your option: " << endl;
-	cout << "(1) Edit your data" << endl << "(2) Search for a student" << endl << "(3) Add student data" << endl;
-	cout << "(4) Edit student data" << endl << "(5) Exit" << endl << "(6) Log out";
+	cout << "(1) Display courses" << endl << "(2) Add" << endl << "(3) Search" << endl << "(4) Exit" << endl; //make a logout choice
 	int choice;
-	cout << "choice: "; 
+	cout << "choice: ";
 	cin >> choice;
 	system("cls");
-	edit();
+	if (choice == 1)
+		display();
+	else if (choice == 2)
+		search();
+	else if (choice == 3)
+		add();
 }
 
+void display()
+{
+	cout << "\tAcademic years" << endl << endl << "(1) 2017" << endl << "(2) 2018" << endl << "(3) 2019" << endl;
+	int choice;
+	cout << "Enter choice: "; cin >> choice;
+	system("cls");
+	if (choice == 1)
+		cout << "\t2017 coures" << endl << endl;
+	else if (choice == 2)
+		cout << "\t2018 coures" << endl << endl;
+	else if(choice == 3)
+		cout << "\t2019 coures" << endl << endl;
+}
 void edit()
 {
 	cout << "What would you like to change?" << endl;
 	cout << "(1) Full name" << endl << "(2) ID" << endl << "(3) Password" << endl;
-	cout << "(4) Back to Main page" << endl << "(5) exit" << endl << "(6) Log out" << endl;
+	cout << "(4) Back to Main page" << endl << "(5) Exit" << endl << "(6) Log out" << endl;
 	int choice;
 	cout << "choice: ";
 	cin >> choice;
+	system("cls");
+	if (choice == 4)
+		mainpage();
+}
+void search()
+{
+	cout << "(1) Search by name" << endl << "(2) Record the attendance" << endl << "(3) Show all list" << endl << "(4) Show students that exceed the absence limit" << endl;
+	cout << "(5) Back to main page" << endl << "(6) Exit" << endl;
+	int choice;
+	cout << "choice : ";
+	cin >> choice;
+	system("cls");
+	if (choice == 5)
+		mainpage();
+}
+void add()
+{
+	string fname;
+	string mname;
+	string lname;
+	int id;
+	string acy;
+	while (true)
+	{
+		char x;
+		cout << "Enter first name: "; cin >> fname;
+		cout << "Enter middle name: "; cin >> mname;
+		cout << "Enter last name: "; cin >> lname;
+		cout << "Enter the id: "; cin >> id;
+		cout << "Enter the academic year: "; cin >> acy;
+		cout << "Adding completed.." << endl;
+		string id2 = to_string(id);
+		id2.append(".txt");
+		ofstream newstudent(id2);
+		newstudent << fname << ' ' << mname << ' ' << ' ' << lname << ' ' << id << ' ' << acy << endl;
+		newstudent.close();
+		cout << "Do you want to add another student?(y/n):"; cin >> x;
+		if (x == 'y')
+			continue;
+		else if (x == 'n')
+			break;
+		else
+			cout << "invalid input.";
+	}
 }
